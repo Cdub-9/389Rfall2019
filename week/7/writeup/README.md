@@ -16,16 +16,16 @@ Answer the following questions regarding [this](../image) file:
     - JPEG image data
 
 2. Where was this photo taken? Provide a city, state and the name of the building in your answer.
-    Water Tower Place, shopping Mall, Chicago, Illinois 
+    - Water Tower Place, shopping Mall, Chicago, Illinois 
 
 3. When was this photo taken? Provide a timestamp in your answer.
-    2018:08:22 11:33:24.801 - taken
+   -  2018:08:22 11:33:24.801 - taken
 
 4. What kind of camera took this photo?
     - Apple iPhone 8 
 
 5. How high up was this photo taken? Provide an answer in meters.
-    -539.5 meters above sea level 
+    - 539.5 meters above sea level 
 
 6. Provide any found flags in this file in standard flag format.
     - CMSC389R - {look_I_f0und_a_str1ng} 
