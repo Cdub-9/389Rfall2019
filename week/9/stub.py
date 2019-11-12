@@ -35,6 +35,7 @@ author,   = struct.unpack("<Q", data[12:20])
 #print(hex(author))
 sectionCount, = struct.unpack("<L", data[20:24])
 #print(sectionCount)
+headerSize = 24
 
 if magic != MAGIC:
 	print("bad magic ") 
@@ -57,3 +58,42 @@ print("Section Count: %d" % sectionCount)
 # the rest of the header and the actual FPFF body. Good luck!
 
 print("-------  BODY  -------")
+s1t, s1l = struct.unpack( "<LL", data[headerSize:headerSize+8]) 
+s1v = data[headerSize+8:headerSize+32]
+print('Section 1')
+print(s1t)
+print(s1l)
+print(s1v)
+currSize = headerSize+32
+
+s2t, s2l = struct.unpack( "<LL", data[currSize:currSize+8]) 
+s2v1, s2v2 = struct.unpack("<dd", data[currSize+8:currSize+24])
+print('Section 2')
+print(s2t)
+print(s2l)
+print s2v1
+print s2v2
+
+currSize = currSize + 24 
+s3t, s3l = struct.unpack( "<LL", data[currSize:currSize+8]) 
+print('Section 3')
+print(s3t)
+print(s3l)
+#print(data[currSize+8:currSize+currSize+(202776+8)])
+
+
+currSize = currSize + (202776+8) 
+s4t, s4l = struct.unpack( "<LL", data[currSize:currSize+8]) 
+s4v = data[currSize+8:currSize+52]
+print('Section 4')
+print(s4t)
+print(s4l)
+print(s4v)
+
+currSize = currSize+52 
+s5t, s5l = struct.unpack( "<LL", data[currSize:currSize+8]) 
+s5v = data[currSize+8:currSize+88]
+print('Section 5')
+print(s5t)
+print(s5l)
+print s5v
