@@ -79,7 +79,10 @@ s3t, s3l = struct.unpack( "<LL", data[currSize:currSize+8])
 print('Section 3')
 print(s3t)
 print(s3l)
-#print(data[currSize+8:currSize+currSize+(202776+8)])
+f = open('img.raw', "w")
+start = '89504e470d0a1a0a'
+end = hex(data[currSize+8:currSize+(8+202776)])
+
 
 
 currSize = currSize + (202776+8) 
