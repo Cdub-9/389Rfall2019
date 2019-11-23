@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
 #include <openssl/rand.h>
 
 #include "crypto.h"
@@ -54,11 +53,13 @@ int main(int argc, char **argv) {
     
     // hash the command-line argument to use as a key
     key = md5_hash(argv[1], strlen(argv[1]));
+    //printf("The hashed key is %s\n", key); 
     // zero all but first two bytes of key. keyspace is still 256**2 -- big enough, right?
     memset(key+2, 0, 14);
+    //printf("the key after the memset is %s\n", key);
     // we'll hash the key to keep in our file so we know if subsequent users are using the correct one
     key_hash = md5_hash(key, 2);
-
+    //printf("the hashed key is %x \n", key_hash); 
     // we'll probably need this for encryption or decryption later
     memcpy(params.key, key, 16);
     memcpy(params.key_hash, key_hash, 16);
@@ -75,10 +76,14 @@ int main(int argc, char **argv) {
         int ctext_len = st.st_size - 48, ptext_len, i;
         int fd;
 
+	//printf("length of ctext is %d\n", ctext_len);
+
         fd = open(LEDGER_FILE, O_RDONLY, PERMISSIONS);
         read(fd, fd_key_hash, 16);
-
+	//printf("the needed key is %s\n", fd_key_hash);
+        //printf("the parms key is %s\n", params.key_hash);
         // AUTHENTICATION via check for key equality
+
         if (memcmp(params.key_hash, fd_key_hash, 16) != 0) {
             die("Key hash from file is not equal to hash of provided key!");
         } else {
