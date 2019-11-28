@@ -25,7 +25,7 @@ Answer - <script>alert("xss")</script>
 Just inputting some script into the text box, no sanitizing was done
 
 Level 2 
-Answer - "<img src='testing' onerror='alert("xss")'>"
+Answer - "img src='testing' onerror='alert("xss")'" (with <> surrounding  it and no outter "" but git messes it up when reading )
 
 Needed some wat for the alert to constantly render at each load of the page, like an image. Then just added an error message for the image to display what we needed.
 
